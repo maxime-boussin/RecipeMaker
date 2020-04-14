@@ -1,4 +1,4 @@
-package fr.eni.recipemaker;
+package fr.eni.recipemaker.detail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +12,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.recipemaker.R;
 import fr.eni.recipemaker.models.Ingredient;
 import fr.eni.recipemaker.models.Recipe;
+import fr.eni.recipemaker.search.IngredientAdapter;
 
 public class DetailActivity extends AppCompatActivity {
 
