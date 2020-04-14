@@ -10,6 +10,15 @@ public class Recipe {
     private List<Ingredient> ingredients;
     private Double calories;
 
+    public Recipe(String label, String image, String url, List<String> healthLabels, List<Ingredient> ingredients, Double calories) {
+        this.label = label;
+        this.image = image;
+        this.url = url;
+        this.healthLabels = healthLabels;
+        this.ingredients = ingredients;
+        this.calories = calories;
+    }
+
     public String getLabel() {
         return label;
     }
@@ -56,5 +65,18 @@ public class Recipe {
 
     public void setCalories(Double calories) {
         this.calories = calories;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Recipe{");
+        sb.append("label='").append(label).append('\'');
+        sb.append(", image='").append(image).append('\'');
+        sb.append(", url='").append(url).append('\'');
+        sb.append(", healthLabels=").append(healthLabels);
+        sb.append(", ingredients=").append(ingredients);
+        sb.append(", calories=").append(calories);
+        sb.append('}');
+        return sb.toString();
     }
 }
