@@ -33,7 +33,7 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
         if(convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(resId, null);
             myViewHolder = new ViewHolder();
-            myViewHolder.textView = convertView.findViewById(R.id.textView);
+            myViewHolder.ingredientName = convertView.findViewById(R.id.ingredientName);
             convertView.setTag(myViewHolder);
         } else {
             myViewHolder = (ViewHolder) convertView.getTag();
@@ -41,12 +41,12 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 
         Ingredient item = getItem(position);
 
-        myViewHolder.textView.setText(item.getText());
+        myViewHolder.ingredientName.setText(item.getText());
 
         return convertView;
     }
 
     private class ViewHolder {
-        TextView textView;
+        TextView ingredientName;
     }
 }
