@@ -1,16 +1,17 @@
 package fr.eni.recipemaker.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InfoResponse {
+public class InfoResponse implements Serializable {
 
     private String q;
     private int count;
     private String more;
-    private ArrayList<Recipe> hits;
+    private ArrayList<Hits> hits;
 
-    public InfoResponse(String q, String more, int count, ArrayList<Recipe> hits) {
+    public InfoResponse(String q, String more, int count, ArrayList<Hits> hits) {
         this.q = q;
         this.count = count;
         this.more = more;
@@ -41,11 +42,11 @@ public class InfoResponse {
         this.more = more;
     }
 
-    public ArrayList<Recipe> getHits() {
+    public ArrayList<Hits> getHits() {
         return hits;
     }
 
-    public void setHits(ArrayList<Recipe> hits) {
+    public void setHits(ArrayList<Hits> hits) {
         this.hits = hits;
     }
 

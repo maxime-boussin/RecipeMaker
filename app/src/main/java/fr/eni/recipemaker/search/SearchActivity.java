@@ -143,16 +143,21 @@ public class SearchActivity extends AppCompatActivity {
             }
 
             private void getData(String json) {
-                ArrayList<Recipe> listeRecettes = new ArrayList<>();
+
                 InfoResponse infoResponse = new Gson().fromJson(json, InfoResponse.class);
+
                 System.out.println("nb de recettes recues : " + infoResponse.getHits().size());
 
-                listeRecettes.addAll(infoResponse.getHits());
+                System.out.println("recette : " + infoResponse.getHits().get(2).getRecipe());
 
-                for (Recipe recipe: listeRecettes
-                     ) {
-                    System.out.println(recipe);
-                }
+
+
+//                listeRecettes.addAll(infoResponse.getHits());
+//
+//                for (Recipe recipe: listeRecettes
+//                     ) {
+//                    System.out.println(recipe);
+//                }
 
             }
         });
