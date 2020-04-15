@@ -84,6 +84,7 @@ public class SearchActivity extends AppCompatActivity {
          */
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             String listeDesIngredients;
+
             @Override
             public void onClick(View v) {
 
@@ -124,15 +125,19 @@ public class SearchActivity extends AppCompatActivity {
                                 System.out.println(response.toString());
                                 getData(response);
                             }
-                        }, error -> {
-                            String json = new String(error.networkResponse.data);
-                            getData(json);
-                        });
+                        },new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        String json = new String(error.networkResponse.data);
+
+                        getData(json);
+                    }
+                });
                 queue.add(request);
                 Response.ErrorListener errorListener = new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        if(error.networkResponse != null){
+                        if (error.networkResponse != null) {
                             System.out.println("Error Response code : " + error.networkResponse.statusCode);
                         }
                     }
@@ -141,27 +146,25 @@ public class SearchActivity extends AppCompatActivity {
 
 
             private void getData(String json) {
-                Recipe recipe = new Recipe();
                 ArrayList<Recipe> listRecipe = new ArrayList<>();
                 InfoResponse infoResponse = new Gson().fromJson(json, InfoResponse.class);
 
-                System.out.println("nb de recettes recues : " + infoResponse.getHits());
-                for (Hits hit:infoResponse.getHits()
-                     ) {
+                for (Hits hit : infoResponse.getHits()
+                ) {
+                    System.out.println(hit);
+                    Recipe recipe = new Recipe();
                     recipe.setLabel(hit.getRecipe().getLabel());
                     recipe.setCalories(hit.getRecipe().getCalories());
                     recipe.setHealthLabels(hit.getRecipe().getHealthLabels());
                     recipe.setImage(hit.getRecipe().getImage());
                     recipe.setIngredients(hit.getRecipe().getIngredients());
                     recipe.setUrl(hit.getRecipe().getUrl());
+
                     listRecipe.add(recipe);
                 }
 
-
                 Intent intent = new Intent(SearchActivity.this, ListingActivity.class);
-
-
-                intent.putExtra("recipeList",listRecipe);
+                intent.putExtra("recipeList", listRecipe);
                 startActivity(intent);
                 finish();
 
