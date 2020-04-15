@@ -42,7 +42,9 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
         Recipe item = getItem(position);
 
-        myViewHolder.textViewTitle.setText(item.getLabel());
+
+            myViewHolder.textViewTitle.setText(item.getLabel());
+
 
         return convertView;
     }
