@@ -34,8 +34,6 @@ public class ListingActivity extends AppCompatActivity {
         listViewData = findViewById(R.id.listViewData);
         textViewTitle.setText(R.string.list_title);
 
-
-
 //        List<String> healthLabels = new ArrayList<>();
 //        List<Ingredient> ingredients = new ArrayList<>();
 //        healthLabels.add("Sugar-Conscious");
@@ -65,7 +63,12 @@ public class ListingActivity extends AppCompatActivity {
 //        );
         //endregion
     if(getIntent().getExtras() != null){
+
         recipeList = (List<Recipe>) getIntent().getExtras().get("recipeList");
+//        for (Recipe item : recipeList
+//             ) {
+//            System.out.println("apres : " + item);
+//        }
     }
 
         listViewData.setAdapter(new RecipeAdapter(
