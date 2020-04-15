@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fr.eni.recipemaker.detail.DetailActivity;
 import fr.eni.recipemaker.search.IngredientAdapter;
 import fr.eni.recipemaker.search.SearchActivity;
 
