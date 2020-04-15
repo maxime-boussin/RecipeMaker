@@ -3,6 +3,8 @@ package fr.eni.recipemaker.detail;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -35,6 +37,8 @@ public class DetailActivity extends AppCompatActivity {
     private FlexboxLayout tagFlexboxLayout;
     private TextView urlView;
 
+    private String urlRedirect;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,7 @@ public class DetailActivity extends AppCompatActivity {
 
             Picasso.get().load(item.getImage()).into(imageView);
             labelView.setText(item.getLabel());
+            urlRedirect = item.getUrl();
             //urlView.setText(item.getUrl());
 
             for(Ingredient ingredient : item.getIngredients()) {
@@ -77,7 +82,8 @@ public class DetailActivity extends AppCompatActivity {
          */
         Picasso.get().load(R.drawable.carbo).into(imageView);
         labelView.setText("Pâtes carbonara");
-        urlView.setText("https://www.lesbonnnespatescarbo.fr");
+//        urlView.setText("https://www.lesbonnnespatescarbo.fr");
+        urlRedirect = "https://www.lesbonnnespatescarbo.fr";
 
         ingredientList.add(new Ingredient("100g de crème"));
         ingredientList.add(new Ingredient("500g de Pâtes"));
@@ -124,5 +130,15 @@ public class DetailActivity extends AppCompatActivity {
         tagName.setText(value);
 
         return view;
+    }
+
+    public void redirectToRecipe(View view) {
+        Intent intentWebsite = new Intent(Intent.ACTION_VIEW);
+        intentWebsite.setData(Uri.parse(urlRedirect));
+        startActivity(intentWebsite);
+    }
+
+    public void back(View view) {
+        finish();
     }
 }
