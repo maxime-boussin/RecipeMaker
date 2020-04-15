@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intentHome = new Intent(MainActivity.this, DetailActivity.class);
+                Intent intentHome = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intentHome);
             }
         },3000);
