@@ -76,29 +76,30 @@ public class DetailActivity extends AppCompatActivity {
                 tagFlexboxLayout.addView(getTag(DetailActivity.this, tag));
             }
 
-        }
-        /**
-         * Données en dur pour test
-         */
-        Picasso.get().load(R.drawable.carbo).into(imageView);
-        labelView.setText("Pâtes carbonara");
-//        urlView.setText("https://www.lesbonnnespatescarbo.fr");
-        urlRedirect = "https://www.lesbonnnespatescarbo.fr";
+        } else {
+            /**
+             * Données en dur pour test
+             */
+            Picasso.get().load(R.drawable.carbo).into(imageView);
+            labelView.setText("Pâtes carbonara");
+            //        urlView.setText("https://www.lesbonnnespatescarbo.fr");
+            urlRedirect = "https://www.lesbonnnespatescarbo.fr";
 
-        ingredientList.add(new Ingredient("100g de crème"));
-        ingredientList.add(new Ingredient("500g de Pâtes"));
+            ingredientList.add(new Ingredient("100g de crème"));
+            ingredientList.add(new Ingredient("500g de Pâtes"));
 
-        for(Ingredient ingredient : ingredientList) {
-            ingredientLinearLayout.addView(getIngredient(DetailActivity.this, ingredient.getText()));
-        }
+            for (Ingredient ingredient : ingredientList) {
+                ingredientLinearLayout.addView(getIngredient(DetailActivity.this, ingredient.getText()));
+            }
 
-        tagList.add("Peanut-Free");
-        tagList.add("Alcohol-Free");
-        tagList.add("Peanut-Free");
-        tagList.add("Alcohol-Free");
+            tagList.add("Peanut-Free");
+            tagList.add("Alcohol-Free");
+            tagList.add("Peanut-Free");
+            tagList.add("Alcohol-Free");
 
-        for(String tag : tagList) {
-            tagFlexboxLayout.addView(getTag(DetailActivity.this, tag));
+            for (String tag : tagList) {
+                tagFlexboxLayout.addView(getTag(DetailActivity.this, tag));
+            }
         }
     }
 

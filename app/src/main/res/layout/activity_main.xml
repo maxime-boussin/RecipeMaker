@@ -15,4 +15,12 @@
         android:layout_height="wrap_content"
         android:src="@drawable/loader"
         android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RecipeMaker"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 </LinearLayout>
