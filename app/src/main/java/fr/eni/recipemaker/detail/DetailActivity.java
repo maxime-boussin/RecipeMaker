@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -30,7 +32,7 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView labelView;
     private LinearLayout ingredientLinearLayout;
-    private FlexboxLayout tagLinearLayout;
+    private FlexboxLayout tagFlexboxLayout;
     private TextView urlView;
 
     @Override
@@ -40,11 +42,16 @@ public class DetailActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         labelView = findViewById(R.id.labelView);
-        ingredientLinearLayout = findViewById(R.id.ingredientLinearLayout);
-        tagLinearLayout = findViewById(R.id.tagLinearLayout);
-        tagLinearLayout.setFlexDirection(FlexDirection.ROW);
-        tagLinearLayout.setFlexWrap(FlexWrap.WRAP);
         urlView = findViewById(R.id.urlView);
+
+        ingredientLinearLayout = findViewById(R.id.ingredientLinearLayout);
+
+        /**
+         * flexboxlayout pour retour a la ligne pour les tags
+         */
+        tagFlexboxLayout = findViewById(R.id.tagFlexboxLayout);
+        tagFlexboxLayout.setFlexDirection(FlexDirection.ROW);
+        tagFlexboxLayout.setFlexWrap(FlexWrap.WRAP);
 
         final List<Ingredient> ingredientList = new ArrayList<>();
         final List<String> tagList = new ArrayList<>();
@@ -54,17 +61,20 @@ public class DetailActivity extends AppCompatActivity {
 
             Picasso.get().load(item.getImage()).into(imageView);
             labelView.setText(item.getLabel());
-            urlView.setText(item.getUrl());
+            //urlView.setText(item.getUrl());
 
             for(Ingredient ingredient : item.getIngredients()) {
                 ingredientLinearLayout.addView(getIngredient(DetailActivity.this, ingredient.getText()));
             }
 
             for(String tag : item.getHealthLabels()) {
-                tagLinearLayout.addView(getTag(DetailActivity.this, tag));
+                tagFlexboxLayout.addView(getTag(DetailActivity.this, tag));
             }
 
         }
+        /**
+         * Données en dur pour test
+         */
         Picasso.get().load(R.drawable.carbo).into(imageView);
         labelView.setText("Pâtes carbonara");
         urlView.setText("https://www.lesbonnnespatescarbo.fr");
@@ -82,12 +92,18 @@ public class DetailActivity extends AppCompatActivity {
         tagList.add("Alcohol-Free");
 
         for(String tag : tagList) {
-            tagLinearLayout.addView(getTag(DetailActivity.this, tag));
+            tagFlexboxLayout.addView(getTag(DetailActivity.this, tag));
         }
     }
 
+    /**
+     * Création d'une view avec ingrédients pour avoir une liste avec hauteur dynamique
+     * @param context
+     * @param value
+     * @return
+     */
     private View getIngredient(Context context, String value) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_ingredient, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_ingredient_recipe, null);
 
         TextView ingredientName = view.findViewById(R.id.ingredientName);
         ingredientName.setText(value);
@@ -95,6 +111,12 @@ public class DetailActivity extends AppCompatActivity {
         return view;
     }
 
+    /**
+     * Création d'une view avec tags pour avoir une liste avec hauteur dynamique
+     * @param context
+     * @param value
+     * @return
+     */
     private View getTag(Context context, String value) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_tag, null);
 
