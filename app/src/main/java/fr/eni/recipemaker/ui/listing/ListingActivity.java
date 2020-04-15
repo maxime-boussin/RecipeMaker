@@ -4,9 +4,11 @@ import fr.eni.recipemaker.R;
 import fr.eni.recipemaker.models.Ingredient;
 import fr.eni.recipemaker.models.Recipe;
 import fr.eni.recipemaker.ui.listing.RecipeAdapter;
+import fr.eni.recipemaker.detail.DetailActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -63,7 +65,7 @@ public class ListingActivity extends AppCompatActivity {
 
         listViewData.setAdapter(new RecipeAdapter(
                 ListingActivity.this,
-                R.layout.item_recipe,
+                R.layout.activity_detail,
                 recipeList
         ));
 
@@ -72,10 +74,10 @@ public class ListingActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Recipe item = recipeList.get(position);
 
-                Intent intent = new Intent(ListingActivity.this, DetailsActivity.class);
+                Intent intent = new Intent(ListingActivity.this, DetailActivity.class);
 
                 // TODO : passage de l'objet Recipe
-                intent.putExtra("object", item);
+                intent.putExtra("object", (Parcelable) item);
 
                 startActivity(intent);
             }
