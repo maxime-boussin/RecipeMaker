@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +21,7 @@ import fr.eni.recipemaker.models.Ingredient;
 public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 
     private int ingredientId;
-
+    private ListView listIngredients;
 
     public IngredientAdapter(@NonNull Context context, int resource, @NonNull List<Ingredient> objects) {
         super(context, resource, objects);
@@ -29,6 +31,7 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(ingredientId, null);
@@ -41,9 +44,15 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
         Ingredient ingredient = getItem(position);
         viewHolder.ingredientName.setText(ingredient.getText());
         return convertView;
+
+
     }
 
+
     class ViewHolder {
+        /**
+         * indispensable ??
+         */
         TextView ingredientName;
     }
 }
