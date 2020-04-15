@@ -63,23 +63,6 @@ public class SearchActivity extends AppCompatActivity {
 
 
         /**
-         * Suppression d'un élément dans laliste
-         */
-        listIngredients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("id de l'élément à supprimer : " + position);
-                ingredients.remove(position);
-                listIngredients = findViewById(R.id.listViewIngredients);
-                adapter = new IngredientAdapter(SearchActivity.this,
-                        R.layout.item_ingredient,
-                        ingredients
-                );
-                listIngredients.setAdapter(adapter);
-            }
-        });
-
-        /**
          * envoi de la requette
          */
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +144,6 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent = new Intent(SearchActivity.this, ListingActivity.class);
                 intent.putExtra("recipeList", listRecipe);
                 startActivity(intent);
-
 
             }
         });
