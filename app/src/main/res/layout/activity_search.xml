@@ -40,14 +40,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
     <Button
+        android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="submit"
-        android:textColor="@color/colorWhite"
-        android:text="Valider"
-        android:textStyle="bold"
         android:layout_gravity="right"
         android:background="@drawable/submit_button"
-        />
+        android:text="Valider"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold" />
 </LinearLayout>

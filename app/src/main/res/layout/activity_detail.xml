@@ -23,8 +23,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_weight="1"
-                tools:src="@drawable/carbo"/>
+                android:layout_weight="1"/>
+<!--                tools:src="@drawable/carbo"/>-->
 
             <TextView
                 android:id="@+id/labelView"
