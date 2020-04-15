@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fr.eni.recipemaker.search.IngredientAdapter;
 import fr.eni.recipemaker.search.SearchActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,5 +29,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentHome);
             }
         },2000);
+    }
+
+    public void supprIngredient(View view) {
+
     }
 }
