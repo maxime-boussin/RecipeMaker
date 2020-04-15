@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intentHome = new Intent(MainActivity.this, SearchActivity.class);
+                Intent intentHome = new Intent(MainActivity.this, DetailActivity.class);
                 startActivity(intentHome);
             }
-        },2000);
+        },3000);
     }
 
     public void supprIngredient(View view) {
