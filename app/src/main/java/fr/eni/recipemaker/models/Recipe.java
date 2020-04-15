@@ -1,8 +1,9 @@
 package fr.eni.recipemaker.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Recipe {
+public class Recipe implements Serializable {
     private String label;
     private String image;
     private String url;
