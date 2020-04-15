@@ -96,10 +96,6 @@ public class SearchActivity extends AppCompatActivity {
                     );
                     return;
                 }
-//                RequestQueue requestqueue ;
-//                Uri.Builder uri = new Uri.Builder();
-//                uri.scheme("https");
-//                uri.path(Constant.get_recipe);
 //
 
                 RequestQueue queue = Volley.newRequestQueue(SearchActivity.this);
@@ -122,14 +118,13 @@ public class SearchActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                System.out.println(response.toString());
+                                System.out.println(response);
                                 getData(response);
                             }
                         },new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         String json = new String(error.networkResponse.data);
-
                         getData(json);
                     }
                 });
@@ -166,7 +161,7 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent = new Intent(SearchActivity.this, ListingActivity.class);
                 intent.putExtra("recipeList", listRecipe);
                 startActivity(intent);
-                finish();
+
 
             }
         });
