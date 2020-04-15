@@ -1,0 +1,49 @@
+package fr.eni.recipemaker.search;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.List;
+
+import fr.eni.recipemaker.R;
+import fr.eni.recipemaker.models.Ingredient;
+
+
+public class IngredientAdapter extends ArrayAdapter<Ingredient> {
+
+    private int ingredientId;
+
+
+    public IngredientAdapter(@NonNull Context context, int resource, @NonNull List<Ingredient> objects) {
+        super(context, resource, objects);
+        ingredientId = resource;
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(ingredientId, null);
+            viewHolder = new ViewHolder();
+            viewHolder.ingredientName = convertView.findViewById(R.id.ingredientName);
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        Ingredient ingredient = getItem(position);
+        viewHolder.ingredientName.setText(ingredient.getText());
+        return convertView;
+    }
+
+    class ViewHolder {
+        TextView ingredientName;
+    }
+}
