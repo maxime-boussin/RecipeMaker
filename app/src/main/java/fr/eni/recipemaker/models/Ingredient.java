@@ -4,6 +4,10 @@ public class Ingredient {
     private String text;
     private Double weight;
 
+    public Ingredient(String text, Double weight) {
+        this.text = text;
+        this.weight = weight;
+    }
 
     public String getText() {
         return text;

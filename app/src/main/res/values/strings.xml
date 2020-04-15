@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RecipeMaker</string>
+    <string name="list_title">Recettes</string>
+    <string name="list_back_button">Retour</string>
 </resources>

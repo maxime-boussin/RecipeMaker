@@ -10,6 +10,15 @@ public class Recipe {
     private List<Ingredient> ingredients;
     private Double calories;
 
+    public Recipe(String label, String image, String url, List<String> healthLabels, List<Ingredient> ingredients, Double calories){
+        this.label = label;
+        this.image = image;
+        this.url = url;
+        this.healthLabels = healthLabels;
+        this.ingredients = ingredients;
+        this.calories = calories;
+    }
+
     public String getLabel() {
         return label;
     }
