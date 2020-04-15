@@ -3,16 +3,13 @@ package fr.eni.recipemaker.search;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,17 +18,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import fr.eni.recipemaker.R;
+import fr.eni.recipemaker.models.Hits;
 import fr.eni.recipemaker.models.InfoResponse;
 import fr.eni.recipemaker.models.Ingredient;
 import fr.eni.recipemaker.models.Recipe;
+import fr.eni.recipemaker.ui.listing.ListingActivity;
 import fr.eni.recipemaker.utils.Constant;
 import fr.eni.recipemaker.utils.FastDialog;
 
@@ -142,22 +139,31 @@ public class SearchActivity extends AppCompatActivity {
                 };
             }
 
-            private void getData(String json) {
 
+            private void getData(String json) {
+                Recipe recipe = new Recipe();
+                ArrayList<Recipe> listRecipe = new ArrayList<>();
                 InfoResponse infoResponse = new Gson().fromJson(json, InfoResponse.class);
 
-                System.out.println("nb de recettes recues : " + infoResponse.getHits().size());
+                System.out.println("nb de recettes recues : " + infoResponse.getHits());
+                for (Hits hit:infoResponse.getHits()
+                     ) {
+                    recipe.setLabel(hit.getRecipe().getLabel());
+                    recipe.setCalories(hit.getRecipe().getCalories());
+                    recipe.setHealthLabels(hit.getRecipe().getHealthLabels());
+                    recipe.setImage(hit.getRecipe().getImage());
+                    recipe.setIngredients(hit.getRecipe().getIngredients());
+                    recipe.setUrl(hit.getRecipe().getUrl());
+                    listRecipe.add(recipe);
+                }
 
-                System.out.println("recette : " + infoResponse.getHits().get(2).getRecipe());
+
+                Intent intent = new Intent(SearchActivity.this, ListingActivity.class);
 
 
-
-//                listeRecettes.addAll(infoResponse.getHits());
-//
-//                for (Recipe recipe: listeRecettes
-//                     ) {
-//                    System.out.println(recipe);
-//                }
+                intent.putExtra("recipeList",listRecipe);
+                startActivity(intent);
+                finish();
 
             }
         });

@@ -20,6 +20,10 @@ public class Recipe implements Serializable {
         this.calories = calories;
     }
 
+    public Recipe() {
+
+    }
+
     public String getLabel() {
         return label;
     }

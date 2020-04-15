@@ -22,7 +22,7 @@ import java.util.List;
 public class ListingActivity extends AppCompatActivity {
     private TextView textViewTitle;
     private ListView listViewData;
-
+    List<Recipe> recipeList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,36 +32,39 @@ public class ListingActivity extends AppCompatActivity {
         listViewData = findViewById(R.id.listViewData);
         textViewTitle.setText(R.string.list_title);
 
-        final List<Recipe> recipeList = new ArrayList<>();
 
-        List<String> healthLabels = new ArrayList<>();
-        List<Ingredient> ingredients = new ArrayList<>();
-        healthLabels.add("Sugar-Conscious");
-        healthLabels.add("Peanut-Free");
-        healthLabels.add("Vegetarian");
-        healthLabels.add("Tree-Nut-Free");
-        healthLabels.add("Alcohol-Free");
-        ingredients.add(new Ingredient("2 cups leftover pasta", 210.0));
-        ingredients.add(new Ingredient("4 eggs beaten", 172.0));
-        ingredients.add(new Ingredient("2 tablespoons butter", 28.4));
-        ingredients.add(new Ingredient("1/2 cup whichever cheese the pasta called for", 52.5));
-        recipeList.add(new Recipe(
-                "Pasta Frittata Recipe",
-                "https://www.edamam.com/web-img/5a5/5a5220b7a65c911a1480502ed0532b5c.jpg",
-                "https://www.foodrepublic.com/recipes/pasta-frittata-recipe/",
-                healthLabels,
-                ingredients,
-                1423.463)
-        );
-        recipeList.add(new Recipe(
-                "Kimchi Pasta",
-                "https://www.edamam.com/web-img/2d1/2d1770d49a37ccc618c0780c2abcf2b9.jpg",
-                "http://norecipes.com/blog/2010/02/02/kimchi-pasta-recipe/",
-                healthLabels,
-                ingredients,
-                725.3600481744218)
-        );
+
+//        List<String> healthLabels = new ArrayList<>();
+//        List<Ingredient> ingredients = new ArrayList<>();
+//        healthLabels.add("Sugar-Conscious");
+//        healthLabels.add("Peanut-Free");
+//        healthLabels.add("Vegetarian");
+//        healthLabels.add("Tree-Nut-Free");
+//        healthLabels.add("Alcohol-Free");
+//        ingredients.add(new Ingredient("2 cups leftover pasta", 210.0));
+//        ingredients.add(new Ingredient("4 eggs beaten", 172.0));
+//        ingredients.add(new Ingredient("2 tablespoons butter", 28.4));
+//        ingredients.add(new Ingredient("1/2 cup whichever cheese the pasta called for", 52.5));
+//        recipeList.add(new Recipe(
+//                "Pasta Frittata Recipe",
+//                "https://www.edamam.com/web-img/5a5/5a5220b7a65c911a1480502ed0532b5c.jpg",
+//                "https://www.foodrepublic.com/recipes/pasta-frittata-recipe/",
+//                healthLabels,
+//                ingredients,
+//                1423.463)
+//        );
+//        recipeList.add(new Recipe(
+//                "Kimchi Pasta",
+//                "https://www.edamam.com/web-img/2d1/2d1770d49a37ccc618c0780c2abcf2b9.jpg",
+//                "http://norecipes.com/blog/2010/02/02/kimchi-pasta-recipe/",
+//                healthLabels,
+//                ingredients,
+//                725.3600481744218)
+//        );
         //endregion
+    if(getIntent().getExtras() != null){
+        recipeList = (List<Recipe>) getIntent().getExtras().get("recipeList");
+    }
 
         listViewData.setAdapter(new RecipeAdapter(
                 ListingActivity.this,
