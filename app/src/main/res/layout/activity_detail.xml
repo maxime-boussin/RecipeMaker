@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffb74d"
+    android:padding="16dp"
     tools:context=".detail.DetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -29,6 +30,8 @@
                 android:id="@+id/labelView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
                 android:gravity="center_vertical"
                 tools:text="Pâtes à la carbonara"
                 android:textSize="30sp"/>
@@ -36,28 +39,35 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
             android:text="Ingrédients:"
             android:textSize="20sp"/>
-        <ListView
-            android:id="@+id/ingredientListView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/ingredientLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nutriments:"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:text="Tags:"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"/>
-        <ListView
-            android:id="@+id/nutrimentView"
-            android:layout_width="wrap_content"
+        <com.google.android.flexbox.FlexboxLayout
+            android:orientation="horizontal"
+            android:id="@+id/tagLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/urlView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             tools:text="url"
             android:textSize="20sp"/>
     </LinearLayout>
 
-
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
