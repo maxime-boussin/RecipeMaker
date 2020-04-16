@@ -1,5 +1,9 @@
 package fr.eni.recipemaker;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import fr.eni.recipemaker.favorites.FavoritesActivity;
 
 public class AppActivity extends AppCompatActivity {
 
@@ -25,10 +31,6 @@ public class AppActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 break;
-            case R.id.favorites:
-                //TODO toggle favorites menu
-                //TODO display favorites list
-                //TODO on favorites menu, redirect to detailActivity onClick
         }
 
         return super.onOptionsItemSelected(item);
@@ -48,6 +50,7 @@ public class AppActivity extends AppCompatActivity {
     }
 
     public void toggleFavorites(MenuItem item) {
-        //Toast.makeText(this, "You have selected Bookmark Menu", Toast.LENGTH_SHORT).show();
+        Intent intentFavorites = new Intent(this, FavoritesActivity.class);
+        startActivity(intentFavorites);
     }
 }

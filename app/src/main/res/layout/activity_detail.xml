@@ -70,14 +70,14 @@
                 android:layout_marginTop="15dp">
 
                 <Button
-                    android:onClick="back"
+                    android:id="@+id/buttonFavorite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="Back"
-                    android:textColor="@color/colorWhite"
-                    android:background="@color/danger"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/sucess"
+                    android:text="Add to favorites"
+                    android:textColor="@color/colorWhite" />
 
                 <Button
                     android:onClick="redirectToRecipe"
@@ -90,10 +90,7 @@
                     android:background="@color/colorBlue"/>
 
             </LinearLayout>
-
-
-
-        </LinearLayout>b
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
