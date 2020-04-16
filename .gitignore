@@ -1,12 +1,12 @@
 *.iml
 .gradle
 /local.properties
-.idea
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
+.idea
 /RECIPE MAKER.pdf
 /gradle/
 /app/app.iml
