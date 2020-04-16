@@ -1,7 +1,9 @@
 package fr.eni.recipemaker;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,8 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AppActivity extends AppCompatActivity {
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.mymenu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
@@ -32,5 +41,9 @@ public class AppActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void toggleFavorites(MenuItem item) {
+        //Toast.makeText(this, "You have selected Bookmark Menu", Toast.LENGTH_SHORT).show();
     }
 }
