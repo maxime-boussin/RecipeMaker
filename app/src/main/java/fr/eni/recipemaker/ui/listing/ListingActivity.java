@@ -9,11 +9,13 @@ import fr.eni.recipemaker.models.Recipe;
 import fr.eni.recipemaker.ui.listing.RecipeAdapter;
 import fr.eni.recipemaker.detail.DetailActivity;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
