@@ -1,6 +1,7 @@
 
 package fr.eni.recipemaker.ui.listing;
 
+import fr.eni.recipemaker.AppActivity;
 import fr.eni.recipemaker.R;
 import fr.eni.recipemaker.detail.DetailActivity;
 import fr.eni.recipemaker.models.Ingredient;
@@ -21,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListingActivity extends AppCompatActivity {
+public class ListingActivity extends AppActivity {
     private TextView textViewTitle;
     private ListView listViewData;
     List<Recipe> recipeList = new ArrayList<>();

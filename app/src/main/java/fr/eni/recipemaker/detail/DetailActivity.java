@@ -24,12 +24,13 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.recipemaker.AppActivity;
 import fr.eni.recipemaker.R;
 import fr.eni.recipemaker.models.Ingredient;
 import fr.eni.recipemaker.models.Recipe;
 import fr.eni.recipemaker.search.IngredientAdapter;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppActivity {
 
     private ImageView imageView;
     private TextView labelView;

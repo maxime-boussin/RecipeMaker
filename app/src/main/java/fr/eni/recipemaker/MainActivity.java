@@ -15,7 +15,7 @@ import fr.eni.recipemaker.detail.DetailActivity;
 import fr.eni.recipemaker.search.IngredientAdapter;
 import fr.eni.recipemaker.search.SearchActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

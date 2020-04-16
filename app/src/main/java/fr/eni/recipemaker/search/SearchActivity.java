@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import fr.eni.recipemaker.AppActivity;
 import fr.eni.recipemaker.R;
 import fr.eni.recipemaker.models.Hits;
 import fr.eni.recipemaker.models.InfoResponse;
@@ -32,7 +33,7 @@ import fr.eni.recipemaker.ui.listing.ListingActivity;
 import fr.eni.recipemaker.utils.Constant;
 import fr.eni.recipemaker.utils.FastDialog;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppActivity {
 
     private List<Recipe> recipies = new ArrayList<>();
     private List<Ingredient> ingredients = new ArrayList<>();
