@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -49,7 +50,10 @@ public class SearchActivity extends AppActivity {
     private CheckBox chkNoLactose;
     private CheckBox chkNoAlcool;
     private CheckBox chkNoPeanuts;
-
+    private static final String PREFS = "PREFS";
+    private static final String PREFS_INGREDIENTS = "PREFS_INGREDIENTS";
+    private static final String PREFS_EXCLUDED = "PREFS_EXCLUDED";
+    SharedPreferences sharedPreferences;
 
 
 
@@ -63,6 +67,7 @@ public class SearchActivity extends AppActivity {
         chkNoLactose = (CheckBox) findViewById(R.id.chkNoLactose);
         chkNoAlcool = (CheckBox) findViewById(R.id.chkNoAlcool);
         chkNoPeanuts = (CheckBox) findViewById(R.id.chkNoPeanuts);
+        sharedPreferences = getBaseContext().getSharedPreferences(PREFS, MODE_PRIVATE);
 
         /**
          * affiche la liste vide par defaut
