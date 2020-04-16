@@ -25,6 +25,10 @@ public class AppActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.favorites:
+                //TODO toggle favorites menu
+                //TODO display favorites list
+                //TODO on favorites menu, redirect to detailActivity onClick
         }
 
         return super.onOptionsItemSelected(item);
