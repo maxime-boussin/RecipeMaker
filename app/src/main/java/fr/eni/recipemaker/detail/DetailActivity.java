@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -11,10 +12,12 @@ import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
@@ -26,9 +29,11 @@ import java.util.List;
 
 import fr.eni.recipemaker.AppActivity;
 import fr.eni.recipemaker.R;
+import fr.eni.recipemaker.favorites.FavoritesActivity;
 import fr.eni.recipemaker.models.Ingredient;
 import fr.eni.recipemaker.models.Recipe;
 import fr.eni.recipemaker.search.IngredientAdapter;
+import fr.eni.recipemaker.ui.listing.RecipeAdapter;
 
 public class DetailActivity extends AppActivity {
 
@@ -36,9 +41,14 @@ public class DetailActivity extends AppActivity {
     private TextView labelView;
     private LinearLayout ingredientLinearLayout;
     private FlexboxLayout tagFlexboxLayout;
-    private TextView urlView;
+    private Button buttonFavorite;
 
     private String urlRedirect;
+    // création liste Java
+    private List<Recipe> recipeList = new ArrayList<>();
+
+    // Adapter
+    private RecipeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +57,7 @@ public class DetailActivity extends AppActivity {
 
         imageView = findViewById(R.id.imageView);
         labelView = findViewById(R.id.labelView);
-        urlView = findViewById(R.id.urlView);
+        buttonFavorite = findViewById(R.id.buttonFavorite);
 
         ingredientLinearLayout = findViewById(R.id.ingredientLinearLayout);
 
@@ -103,6 +113,20 @@ public class DetailActivity extends AppActivity {
 //            }
             labelView.setText("Erreur, pas de recette trouvée");
         }
+
+        buttonFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Recipe item = (Recipe)getIntent().getExtras().get("object");
+                SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("title", item.getLabel());
+                editor.putString("urlRecipe", item.getUrl());
+                editor.apply();
+                Toast.makeText(DetailActivity.this, "Recipe added to favorites !",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     /**
@@ -139,9 +163,5 @@ public class DetailActivity extends AppActivity {
         Intent intentWebsite = new Intent(Intent.ACTION_VIEW);
         intentWebsite.setData(Uri.parse(urlRedirect));
         startActivity(intentWebsite);
-    }
-
-    public void back(View view) {
-        finish();
     }
 }
