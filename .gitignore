@@ -1,7 +1,11 @@
 *.iml
 .gradle
 /local.properties
+<<<<<<< HEAD
 /.idea/*
+=======
+.idea
+>>>>>>> master
 .DS_Store
 /build
 /captures
@@ -9,4 +13,10 @@
 .cxx
 /RECIPE MAKER.pdf
 /gradle/
+<<<<<<< HEAD
 /gradle/
+=======
+/app/app.iml
+/app/.idea
+RecipeMaker.iml
+>>>>>>> master
