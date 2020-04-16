@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +35,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
             myViewHolder = new ViewHolder();
             myViewHolder.textViewTitle = convertView.findViewById(R.id.textViewTitle);
+
 
             convertView.setTag(myViewHolder);
         } else {
