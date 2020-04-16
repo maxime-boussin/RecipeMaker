@@ -1,5 +1,6 @@
 package fr.eni.recipemaker.search;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -21,6 +23,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import fr.eni.recipemaker.AppActivity;
@@ -42,6 +45,12 @@ public class SearchActivity extends AppActivity {
     private EditText editIngredient;
     private Ingredient ingredient;
     private Button buttonSubmit;
+    private CheckBox chkNoGluten;
+    private CheckBox chkNoLactose;
+    private CheckBox chkNoAlcool;
+    private CheckBox chkNoPeanuts;
+
+
 
 
     @Override
@@ -50,7 +59,10 @@ public class SearchActivity extends AppActivity {
         setContentView(R.layout.activity_search);
         editIngredient = findViewById(R.id.editIngredient);
         buttonSubmit = findViewById(R.id.buttonSubmit);
-
+        chkNoGluten = (CheckBox) findViewById(R.id.chkNoGluten);
+        chkNoLactose = (CheckBox) findViewById(R.id.chkNoLactose);
+        chkNoAlcool = (CheckBox) findViewById(R.id.chkNoAlcool);
+        chkNoPeanuts = (CheckBox) findViewById(R.id.chkNoPeanuts);
 
         /**
          * affiche la liste vide par defaut
@@ -69,6 +81,7 @@ public class SearchActivity extends AppActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             String listeDesIngredients;
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
@@ -85,15 +98,34 @@ public class SearchActivity extends AppActivity {
                 RequestQueue queue = Volley.newRequestQueue(SearchActivity.this);
                 /**
                  * construction de la liste d'ingredient
+                 * ajoute la liste des ingredients puis
+                 * on verifie si les cases free sont cochés et si oui
+                 * ajoute &health={liste des exclus}
                  */
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     listeDesIngredients = ingredients.stream().map(Ingredient::getText).collect(Collectors.joining(","));
-
                 }
+                //String excluded = Constant.STR_EXCLUDED;
+                StringJoiner excluded = new StringJoiner(",",Constant.STR_EXCLUDED,"");
+                if(chkNoAlcool.isChecked()){
+                    excluded.add(Constant.ALCOHOL_FREE);
+                }
+                if(chkNoGluten.isChecked()){
+                    excluded.add(Constant.GLUTEN_FREE);
+                }
+                if(chkNoLactose.isChecked()){
+                    excluded.add(Constant.DAIRY_FREE);
+                }
+                if(chkNoPeanuts.isChecked()){
+                    excluded.add(Constant.PEANUTS_FREE);
+                }
+                System.out.println("liste des exclus : " + excluded);
                 /**
                  * construction de la request
                  */
-                String stringRequest = String.format(Constant.get_recipe, listeDesIngredients, Constant.id_Edamam, Constant.key_Edamam);
+                String stringRequest = String.format(Constant.get_recipe, listeDesIngredients, Constant.id_Edamam, Constant.key_Edamam).concat(excluded.toString());
+
                 System.out.println("la request : " + stringRequest);
                 /**
                  * c'est parti mon kiki
