@@ -2,6 +2,7 @@ package fr.eni.recipemaker.ui.listing;
 
 import fr.eni.recipemaker.R;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,6 +38,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
             myViewHolder = new ViewHolder();
             myViewHolder.textViewTitle = convertView.findViewById(R.id.textViewTitle);
+            myViewHolder.imageView = convertView.findViewById(R.id.itemImage);
 
 
             convertView.setTag(myViewHolder);
@@ -44,7 +48,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
         Recipe item = getItem(position);
 
-
+            Picasso.get().load(item.getImage()).into(myViewHolder.imageView);
             myViewHolder.textViewTitle.setText(item.getLabel());
 
 
@@ -53,5 +57,6 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
     class ViewHolder {
         TextView textViewTitle;
+        ImageView imageView;
     }
 }
