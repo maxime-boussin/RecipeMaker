@@ -6,6 +6,7 @@
 /captures
 .externalNativeBuild
 .cxx
+.idea
 /RECIPE MAKER.pdf
 /gradle/
 /app/app.iml
