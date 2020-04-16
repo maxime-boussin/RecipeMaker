@@ -28,11 +28,13 @@
 
         </EditText>
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="addIngredient"
-            android:background="@mipmap/plus" />
+            android:background="@android:color/transparent"
+            android:src="@mipmap/plus"
+            />
     </LinearLayout>
 
     <ListView

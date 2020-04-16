@@ -63,23 +63,6 @@ public class SearchActivity extends AppCompatActivity {
 
 
         /**
-         * Suppression d'un élément dans laliste
-         */
-        listIngredients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("id de l'élément à supprimer : " + position);
-                ingredients.remove(position);
-                listIngredients = findViewById(R.id.listViewIngredients);
-                adapter = new IngredientAdapter(SearchActivity.this,
-                        R.layout.item_ingredient,
-                        ingredients
-                );
-                listIngredients.setAdapter(adapter);
-            }
-        });
-
-        /**
          * envoi de la requette
          */
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -96,10 +79,6 @@ public class SearchActivity extends AppCompatActivity {
                     );
                     return;
                 }
-//                RequestQueue requestqueue ;
-//                Uri.Builder uri = new Uri.Builder();
-//                uri.scheme("https");
-//                uri.path(Constant.get_recipe);
 //
 
                 RequestQueue queue = Volley.newRequestQueue(SearchActivity.this);
@@ -122,14 +101,13 @@ public class SearchActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                System.out.println(response.toString());
+                                System.out.println(response);
                                 getData(response);
                             }
                         },new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         String json = new String(error.networkResponse.data);
-
                         getData(json);
                     }
                 });
@@ -166,7 +144,6 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent = new Intent(SearchActivity.this, ListingActivity.class);
                 intent.putExtra("recipeList", listRecipe);
                 startActivity(intent);
-                finish();
 
             }
         });
