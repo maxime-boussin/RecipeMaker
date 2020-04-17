@@ -12,6 +12,7 @@ Application android de recherche de recettes.
 Recipe Maker permet d'interroger le service Web d' EDAMAM afin d'obtenir des recettes en fonction
 de d'ingredients qui nous sont disponibles.
 
+## Iteration I
 Dans la premiere version l'application permettra de :
 
 - Saisir un ingredient
@@ -25,12 +26,23 @@ Dans la premiere version l'application permettra de :
   - Liste d'ingredients
   - Lien vers le pas à pas de la recette
 - pour l'ensemble des pages une fleche propose un retour arriere
-- Un icon favoris permet de sauvegarder une recette
+
 
 ## Mockup Balsamiq
 ### Search Activity
-![New Wireframe 1 copy](app/src/main/res/mipmap-hdpi/New%20Wireframe%201%20copy.png)
+![SearchActivity](app/src/main/res/mipmap-hdpi/SearchActivity.png)
 ### List Activity
-![New Wireframe 1 copy 2](app/src/main/res/mipmap-hdpi/New%20Wireframe%201%20copy%202.png)
+![ListActivity](app/src/main/res/mipmap-hdpi/ListActivity.png)
 ### Details Activity
-![New Wireframe 1 copy 3](app/src/main/res/mipmap-hdpi/New%20Wireframe%201%20copy%203.png)
+![DetailsActivity](app/src/main/res/mipmap-hdpi/DetailsActivity.png)
+
+## Iteration II
+- Dans la SearchActivity :
+    - un boutton permet d'enregistrer la derniere recherche
+    - refonte du design
+- Dans la listActivity :
+  - refonte du design
+  - affichage des calories dans une pastille
+- Dans la detailsActivity
+  - Un icon favoris permet de sauvegarder les recettes favorites
+  - refonte du design
