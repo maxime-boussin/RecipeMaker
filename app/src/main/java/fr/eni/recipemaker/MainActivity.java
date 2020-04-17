@@ -31,8 +31,4 @@ public class MainActivity extends AppActivity {
             }
         },3000);
     }
-
-    public void supprIngredient(View view) {
-
-    }
 }
