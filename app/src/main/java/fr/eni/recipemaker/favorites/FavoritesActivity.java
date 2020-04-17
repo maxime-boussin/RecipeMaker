@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,12 +29,15 @@ import fr.eni.recipemaker.ui.listing.RecipeAdapter;
 
 public class FavoritesActivity extends AppActivity {
     private ListView listViewData;
+    // Adapter
+    private RecipeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
+        //récupération de la liste de recettes favories
         listViewData = findViewById(R.id.listViewData);
         SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
         Gson gson = new Gson();
@@ -43,11 +48,13 @@ public class FavoritesActivity extends AppActivity {
             System.out.println(r);
         }
 
-        listViewData.setAdapter(new RecipeAdapter(
+        adapter = new RecipeAdapter(
                 FavoritesActivity.this,
                 R.layout.item_favorite,
                 recipeList
-        ));
+        );
+
+        listViewData.setAdapter(adapter);
 
         listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -63,6 +70,24 @@ public class FavoritesActivity extends AppActivity {
             }
         });
 
-        //TODO display favorites list
+        /**
+         * Suppression d'un favori
+         */
+        listViewData.setOnItemLongClickListener((parent, view, position, id) -> {
+            SharedPreferences.Editor editor = sp.edit();
+            //on supprime de la vue
+            recipeList.remove(position);
+            //on supprime des favoris et on informe l'utilisateur de la suppression
+            String jsonSave = gson.toJson(recipeList);
+            editor.putString("recipes", jsonSave);
+            editor.apply();
+            // demande de rafrachissement
+            adapter.notifyDataSetChanged();
+            Toast.makeText(FavoritesActivity.this,
+                    "Recipe removed from favorites !",
+                    Toast.LENGTH_LONG).show();
+
+            return false;
+        });
     }
 }

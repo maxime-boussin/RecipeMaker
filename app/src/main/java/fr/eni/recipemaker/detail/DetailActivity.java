@@ -117,15 +117,19 @@ public class DetailActivity extends AppActivity {
                 Gson gson = new Gson();
                 SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
                 String jsonGet = sp.getString("recipes", "");
+
+                //si la liste de recette n'existe pas on en créé une
                 if(jsonGet == ""){
                     savedRecipes = new ArrayList<>();
                 }
 
+                //si elle existe on la récupère et on ajoute l'item courant
                 Type type = new TypeToken<List<Recipe>>() {}.getType();
                 savedRecipes = gson.fromJson(jsonGet, type);
                 savedRecipes.add(item);
                 SharedPreferences.Editor editor = sp.edit();
 
+                //on enregistre et affiche la confirmation à l'utilisateur
                 String jsonSave = gson.toJson(savedRecipes);
                 editor.putString("recipes", jsonSave);
                 editor.apply();
