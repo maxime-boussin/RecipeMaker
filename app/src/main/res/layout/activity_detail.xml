@@ -74,9 +74,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:background="@color/sucess"
                     android:text="Add to favorites"
-                    android:textColor="@color/colorWhite" />
+                    android:background="@drawable/success_button"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:onClick="redirectToRecipe"
