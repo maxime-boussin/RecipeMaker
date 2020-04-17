@@ -51,7 +51,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
             Picasso.get().load(item.getImage()).into(myViewHolder.imageView);
             myViewHolder.textViewTitle.setText(item.getLabel());
-            myViewHolder.textViewCalories.setText(String.valueOf(Math.round(item.getCalories())));
+            myViewHolder.textViewCalories.setText(String.valueOf(Math.round(item.getCalories()))+"\ncal");
 
 
         return convertView;
