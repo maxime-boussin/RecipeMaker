@@ -23,9 +23,11 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,9 +50,6 @@ public class DetailActivity extends AppActivity {
 
     private String urlRedirect;
 
-    // Adapter
-    private RecipeAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +67,6 @@ public class DetailActivity extends AppActivity {
         tagFlexboxLayout = findViewById(R.id.tagFlexboxLayout);
         tagFlexboxLayout.setFlexDirection(FlexDirection.ROW);
         tagFlexboxLayout.setFlexWrap(FlexWrap.WRAP);
-
-        final List<Ingredient> ingredientList = new ArrayList<>();
-        final List<String> tagList = new ArrayList<>();
 
         if(getIntent().getExtras() != null) {
             Recipe item = (Recipe)getIntent().getExtras().get("object");
@@ -118,16 +114,20 @@ public class DetailActivity extends AppActivity {
             @Override
             public void onClick(View v) {
                 Recipe item = (Recipe)getIntent().getExtras().get("object");
-                if(savedRecipes == null) {
+                Gson gson = new Gson();
+                SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
+                String jsonGet = sp.getString("recipes", "");
+                if(jsonGet == ""){
                     savedRecipes = new ArrayList<>();
                 }
-                savedRecipes.add(item);
 
-                SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
+                Type type = new TypeToken<List<Recipe>>() {}.getType();
+                savedRecipes = gson.fromJson(jsonGet, type);
+                savedRecipes.add(item);
                 SharedPreferences.Editor editor = sp.edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(savedRecipes);
-                editor.putString("recipes", json);
+
+                String jsonSave = gson.toJson(savedRecipes);
+                editor.putString("recipes", jsonSave);
                 editor.apply();
                 Toast.makeText(DetailActivity.this,
                         "Recipe added to favorites !",
