@@ -53,12 +53,16 @@ public class SearchActivity extends AppActivity {
     private CheckBox chkNoLactose;
     private CheckBox chkNoAlcool;
     private CheckBox chkNoPeanuts;
+<<<<<<< master
     private Button buttonReccord;
     private static final String PREFS = "PREFS";
     private static final String PREFS_INGREDIENTS = "PREFS_INGREDIENTS";
     private static final String PREFS_EXCLUDED = "PREFS_EXCLUDED";
     SharedPreferences sharedPreferences;
     StringJoiner excluded = new StringJoiner(",",Constant.STR_EXCLUDED,"");
+=======
+
+>>>>>>> discriminant
 
 
 
@@ -72,8 +76,12 @@ public class SearchActivity extends AppActivity {
         chkNoLactose = (CheckBox) findViewById(R.id.chkNoLactose);
         chkNoAlcool = (CheckBox) findViewById(R.id.chkNoAlcool);
         chkNoPeanuts = (CheckBox) findViewById(R.id.chkNoPeanuts);
+<<<<<<< master
         sharedPreferences = getBaseContext().getSharedPreferences(PREFS, MODE_PRIVATE);
         buttonReccord = (Button) findViewById(R.id.buttonReccord);
+=======
+
+>>>>>>> discriminant
         /**
          * affiche la liste vide par defaut
          */
@@ -137,12 +145,21 @@ public class SearchActivity extends AppActivity {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     listeDesIngredients = ingredients.stream().map(Ingredient::getText).collect(Collectors.joining(","));
+<<<<<<< master
                 }
                 //String excluded = Constant.STR_EXCLUDED;
 
                 if(chkNoAlcool.isChecked()){
                     excluded.add(Constant.ALCOHOL_FREE);
                 }
+=======
+                }
+                //String excluded = Constant.STR_EXCLUDED;
+                StringJoiner excluded = new StringJoiner(",",Constant.STR_EXCLUDED,"");
+                if(chkNoAlcool.isChecked()){
+                    excluded.add(Constant.ALCOHOL_FREE);
+                }
+>>>>>>> discriminant
                 if(chkNoGluten.isChecked()){
                     excluded.add(Constant.GLUTEN_FREE);
                 }
