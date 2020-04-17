@@ -7,13 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="150dp"
         android:layout_height="120dp"
         android:scaleType="fitXY"
-        android:src="@drawable/giphy" />
+        android:src="@drawable/donut" />
 
     <TextView
         android:layout_width="wrap_content"
