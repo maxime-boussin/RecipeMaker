@@ -42,52 +42,56 @@ public class FavoritesActivity extends AppActivity {
         SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sp.getString("recipes", "");
-        Type type = new TypeToken<List<Recipe>>() {}.getType();
-        List<Recipe> recipeList = gson.fromJson(json, type);
-        for (Recipe r : recipeList) {
-            System.out.println(r);
+        if(json == "") {
+        } else {
+            Type type = new TypeToken<List<Recipe>>() {}.getType();
+            List<Recipe> recipeList = gson.fromJson(json, type);
+            for (Recipe r : recipeList) {
+                System.out.println(r);
+            }
+
+            adapter = new RecipeAdapter(
+                    FavoritesActivity.this,
+                    R.layout.item_favorite,
+                    recipeList
+            );
+
+            listViewData.setAdapter(adapter);
+
+            listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Recipe item = recipeList.get(position);
+
+                    Intent intent = new Intent(FavoritesActivity.this, DetailActivity.class);
+
+                    // TODO : passage de l'objet Recipe
+                    intent.putExtra("object", item);
+
+                    startActivity(intent);
+                }
+            });
+
+            /**
+             * Suppression d'un favori
+             */
+            listViewData.setOnItemLongClickListener((parent, view, position, id) -> {
+                SharedPreferences.Editor editor = sp.edit();
+                //on supprime de la vue
+                recipeList.remove(position);
+                //on supprime des favoris et on informe l'utilisateur de la suppression
+                String jsonSave = gson.toJson(recipeList);
+                editor.putString("recipes", jsonSave);
+                editor.apply();
+                // demande de rafrachissement
+                adapter.notifyDataSetChanged();
+                Toast.makeText(FavoritesActivity.this,
+                        "Recipe removed from favorites !",
+                        Toast.LENGTH_LONG).show();
+
+                return false;
+            });
         }
 
-        adapter = new RecipeAdapter(
-                FavoritesActivity.this,
-                R.layout.item_favorite,
-                recipeList
-        );
-
-        listViewData.setAdapter(adapter);
-
-        listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Recipe item = recipeList.get(position);
-
-                Intent intent = new Intent(FavoritesActivity.this, DetailActivity.class);
-
-                // TODO : passage de l'objet Recipe
-                intent.putExtra("object", item);
-
-                startActivity(intent);
-            }
-        });
-
-        /**
-         * Suppression d'un favori
-         */
-        listViewData.setOnItemLongClickListener((parent, view, position, id) -> {
-            SharedPreferences.Editor editor = sp.edit();
-            //on supprime de la vue
-            recipeList.remove(position);
-            //on supprime des favoris et on informe l'utilisateur de la suppression
-            String jsonSave = gson.toJson(recipeList);
-            editor.putString("recipes", jsonSave);
-            editor.apply();
-            // demande de rafrachissement
-            adapter.notifyDataSetChanged();
-            Toast.makeText(FavoritesActivity.this,
-                    "Recipe removed from favorites !",
-                    Toast.LENGTH_LONG).show();
-
-            return false;
-        });
     }
 }
