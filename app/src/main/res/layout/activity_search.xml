@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Add Ingredients : "
         android:textSize="20sp"
+        android:padding="16dp"
         android:textStyle="bold" />
 
     <LinearLayout
