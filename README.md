@@ -51,12 +51,19 @@ Dans la premiere version l'application permettra de :
 
 ![listrecipe](files/listrecipe.png)
 - Dans la detailsActivity
-  - Un icon favoris permet de sauvegarder les recettes favorites
+  - Un bouton favoris permet de sauvegarder les recettes favorites
   - refonte du design
-  - Creation d'une activity favoris
+  
+- Creation d'une activity favoris
+  - Accès par l'action bar (icon étoile)
+  - Lors d'un appui long sur une recette, suppression de celle-ci des favoris
 
 ![detailsRecipe](files/detailsRecipe.png)
 
 ![toastaddfavorites](files/toastaddfavorites.png)
 
 ![listFavoris](files/listFavoris.png)
+
+- Ajout d'un icon personnalisé à l'application
+
+![appicon](files/app.png)
