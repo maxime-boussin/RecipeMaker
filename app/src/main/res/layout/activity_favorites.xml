@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/angryimg"
-    android:padding="16dp"
     tools:context=".favorites.FavoritesActivity">
 
     <LinearLayout
@@ -22,6 +21,7 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/colorBlack"
             android:textStyle="bold"
+            android:padding="16dp"
             android:gravity="center"/>
 
         <TextView
