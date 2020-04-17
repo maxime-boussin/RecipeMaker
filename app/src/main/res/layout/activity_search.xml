@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@drawable/angryimg"
     android:orientation="vertical"
-<<<<<<< master
-=======
-    android:padding="16dp"
->>>>>>> discriminant
     tools:context=".search.SearchActivity">
 
     <TextView
@@ -23,12 +19,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-<<<<<<< master
         android:layout_height="wrap_content"
         android:padding="8dp">
-=======
-        android:layout_height="wrap_content">
->>>>>>> discriminant
 
         <EditText
             android:id="@+id/editIngredient"
@@ -38,7 +30,6 @@
             android:layout_weight="1">
 
         </EditText>
-<<<<<<< master
         <Button
             android:onClick="addIngredient"
             android:layout_width="42dp"
@@ -48,21 +39,11 @@
             android:text="✚"
             android:textColor="@color/colorWhite"
             android:textSize="28dp" />
-=======
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:onClick="addIngredient"
-            android:src="@mipmap/plus" />
->>>>>>> discriminant
     </LinearLayout>
 
     <ListView
         android:id="@+id/listViewIngredients"
         android:layout_width="match_parent"
-<<<<<<< master
         android:layout_height="400dp" />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -144,63 +125,4 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-=======
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="free : " />
-
-            <CheckBox
-                android:id="@+id/chkNoGluten"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gluten" />
-
-            <CheckBox
-                android:id="@+id/chkNoLactose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lactose" />
-
-            <CheckBox
-                android:id="@+id/chkNoAlcool"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Alcoohol" />
-
-            <CheckBox
-                android:id="@+id/chkNoPeanuts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Peanuts" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:background="@drawable/submit_button"
-        android:text="Valider"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold" />
-
->>>>>>> discriminant
 </LinearLayout>
