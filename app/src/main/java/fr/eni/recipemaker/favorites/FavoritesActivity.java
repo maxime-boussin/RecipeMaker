@@ -29,6 +29,8 @@ import fr.eni.recipemaker.ui.listing.RecipeAdapter;
 
 public class FavoritesActivity extends AppActivity {
     private ListView listViewData;
+    private TextView noFavorite;
+
     // Adapter
     private RecipeAdapter adapter;
 
@@ -39,55 +41,62 @@ public class FavoritesActivity extends AppActivity {
 
         //récupération de la liste de recettes favories
         listViewData = findViewById(R.id.listViewData);
+        noFavorite = findViewById(R.id.noFavorite);
         SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sp.getString("recipes", "");
+
         Type type = new TypeToken<List<Recipe>>() {}.getType();
         List<Recipe> recipeList = gson.fromJson(json, type);
-        for (Recipe r : recipeList) {
-            System.out.println(r);
+        if(recipeList.isEmpty()) {
+            noFavorite.setText("No recipes in favorites for now !");
+        } else {
+            for (Recipe r : recipeList) {
+                System.out.println(r);
+            }
+
+            adapter = new RecipeAdapter(
+                    FavoritesActivity.this,
+                    R.layout.item_favorite,
+                    recipeList
+            );
+
+            listViewData.setAdapter(adapter);
+
+            listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Recipe item = recipeList.get(position);
+
+                    Intent intent = new Intent(FavoritesActivity.this, DetailActivity.class);
+
+                    // TODO : passage de l'objet Recipe
+                    intent.putExtra("object", item);
+
+                    startActivity(intent);
+                }
+            });
+
+            /**
+             * Suppression d'un favori
+             */
+            listViewData.setOnItemLongClickListener((parent, view, position, id) -> {
+                SharedPreferences.Editor editor = sp.edit();
+                //on supprime de la vue
+                recipeList.remove(position);
+                //on supprime des favoris et on informe l'utilisateur de la suppression
+                String jsonSave = gson.toJson(recipeList);
+                editor.putString("recipes", jsonSave);
+                editor.apply();
+                // demande de rafrachissement
+                adapter.notifyDataSetChanged();
+                Toast.makeText(FavoritesActivity.this,
+                        "Recipe removed from favorites !",
+                        Toast.LENGTH_LONG).show();
+
+                return false;
+            });
         }
 
-        adapter = new RecipeAdapter(
-                FavoritesActivity.this,
-                R.layout.item_favorite,
-                recipeList
-        );
-
-        listViewData.setAdapter(adapter);
-
-        listViewData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Recipe item = recipeList.get(position);
-
-                Intent intent = new Intent(FavoritesActivity.this, DetailActivity.class);
-
-                // TODO : passage de l'objet Recipe
-                intent.putExtra("object", item);
-
-                startActivity(intent);
-            }
-        });
-
-        /**
-         * Suppression d'un favori
-         */
-        listViewData.setOnItemLongClickListener((parent, view, position, id) -> {
-            SharedPreferences.Editor editor = sp.edit();
-            //on supprime de la vue
-            recipeList.remove(position);
-            //on supprime des favoris et on informe l'utilisateur de la suppression
-            String jsonSave = gson.toJson(recipeList);
-            editor.putString("recipes", jsonSave);
-            editor.apply();
-            // demande de rafrachissement
-            adapter.notifyDataSetChanged();
-            Toast.makeText(FavoritesActivity.this,
-                    "Recipe removed from favorites !",
-                    Toast.LENGTH_LONG).show();
-
-            return false;
-        });
     }
 }

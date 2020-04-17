@@ -24,10 +24,19 @@
             android:textStyle="bold"
             android:gravity="center"/>
 
+        <TextView
+            android:id="@+id/noFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:gravity="center"
+            tools:text="No recipe for now"/>
+
         <ListView
             android:id="@+id/listViewData"
             android:layout_width="match_parent"
-            android:layout_height="585dp" />
+            android:layout_height="500dp" />
 
     </LinearLayout>
 

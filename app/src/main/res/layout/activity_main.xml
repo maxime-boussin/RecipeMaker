@@ -10,10 +10,10 @@
     android:orientation="vertical">
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/loader"
-        android:scaleType="fitXY"/>
+        android:layout_width="229dp"
+        android:layout_height="223dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/donut" />
 
     <TextView
         android:layout_width="wrap_content"
