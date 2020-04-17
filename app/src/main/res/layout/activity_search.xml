@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@drawable/angryimg"
     tools:context=".search.SearchActivity">
 
     <TextView
@@ -25,32 +23,36 @@
             android:id="@+id/editIngredient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1">
 
         </EditText>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
             android:onClick="addIngredient"
-            android:background="@android:color/transparent"
-            android:src="@mipmap/plus"
-            />
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/submit_button"
+            android:text="✚"
+            android:textColor="@color/colorWhite"
+            android:textSize="28dp" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/listViewIngredients"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="400dp" />
 
     <Button
         android:id="@+id/buttonSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_margin="5dp"
+        android:layout_width="124dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="-100dp"
         android:background="@drawable/submit_button"
-        android:text="Valider"
+        android:text="Next"
         android:textColor="@color/colorWhite"
+        android:textSize="20dp"
         android:textStyle="bold" />
 </LinearLayout>
