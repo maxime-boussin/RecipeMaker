@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/angryimg"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".search.SearchActivity">
 
     <TextView
@@ -25,24 +24,25 @@
             android:id="@+id/editIngredient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1">
 
         </EditText>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+        <Button
             android:onClick="addIngredient"
-            android:src="@mipmap/plus" />
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/submit_button"
+            android:text="✚"
+            android:textColor="@color/colorWhite"
+            android:textSize="28dp" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/listViewIngredients"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
+        android:layout_height="400dp" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,31 +91,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp">
-
+        android:layout_marginTop="15dp"
+        android:padding="8dp">
         <Button
             android:id="@+id/buttonReccord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_weight="2"
-            android:background="@drawable/submit_button"
-            android:text="Enregistrer"
-            android:layout_marginRight="5dp"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="-100dp"
+            android:background="@drawable/success_button"
+            android:text="Save"
             android:textColor="@color/colorWhite"
+            android:textSize="20dp"
             android:textStyle="bold" />
         <Button
             android:id="@+id/buttonSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="2"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="-100dp"
             android:background="@drawable/submit_button"
-            android:text="Valider"
+            android:text="Next"
             android:textColor="@color/colorWhite"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
-
 </LinearLayout>

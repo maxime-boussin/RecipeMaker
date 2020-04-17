@@ -6,13 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/angryimg"
     android:gravity="center"
     android:orientation="vertical">
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="229dp"
-        android:layout_height="223dp"
+        android:layout_width="176dp"
+        android:layout_height="163dp"
         android:scaleType="fitXY"
         android:src="@drawable/donut" />
 
