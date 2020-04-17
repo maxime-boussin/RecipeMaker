@@ -29,6 +29,8 @@ import fr.eni.recipemaker.ui.listing.RecipeAdapter;
 
 public class FavoritesActivity extends AppActivity {
     private ListView listViewData;
+    private TextView noFavorite;
+
     // Adapter
     private RecipeAdapter adapter;
 
@@ -39,13 +41,16 @@ public class FavoritesActivity extends AppActivity {
 
         //récupération de la liste de recettes favories
         listViewData = findViewById(R.id.listViewData);
+        noFavorite = findViewById(R.id.noFavorite);
         SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sp.getString("recipes", "");
-        if(json == "") {
+
+        Type type = new TypeToken<List<Recipe>>() {}.getType();
+        List<Recipe> recipeList = gson.fromJson(json, type);
+        if(recipeList.isEmpty()) {
+            noFavorite.setText("No recipes in favorites for now !");
         } else {
-            Type type = new TypeToken<List<Recipe>>() {}.getType();
-            List<Recipe> recipeList = gson.fromJson(json, type);
             for (Recipe r : recipeList) {
                 System.out.println(r);
             }
