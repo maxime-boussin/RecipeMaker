@@ -46,3 +46,4 @@ Dans la premiere version l'application permettra de :
 - Dans la detailsActivity
   - Un icon favoris permet de sauvegarder les recettes favorites
   - refonte du design
+
