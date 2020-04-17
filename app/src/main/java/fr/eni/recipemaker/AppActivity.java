@@ -46,8 +46,9 @@ public class AppActivity extends AppCompatActivity {
             if(!(this instanceof MainActivity || this instanceof SearchActivity)) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
+            getSupportActionBar().setLogo(R.drawable.ic_launcher_round);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
-
     }
 
     public void toggleFavorites(MenuItem item) {

@@ -84,29 +84,6 @@ public class DetailActivity extends AppActivity {
             }
 
         } else {
-            /**
-             * Données en dur pour test
-             */
-//            Picasso.get().load(R.drawable.carbo).into(imageView);
-//            labelView.setText("Pâtes carbonara");
-//            //        urlView.setText("https://www.lesbonnnespatescarbo.fr");
-//            urlRedirect = "https://www.lesbonnnespatescarbo.fr";
-//
-//            ingredientList.add(new Ingredient("100g de crème"));
-//            ingredientList.add(new Ingredient("500g de Pâtes"));
-//
-//            for (Ingredient ingredient : ingredientList) {
-//                ingredientLinearLayout.addView(getIngredient(DetailActivity.this, ingredient.getText()));
-//            }
-//
-//            tagList.add("Peanut-Free");
-//            tagList.add("Alcohol-Free");
-//            tagList.add("Peanut-Free");
-//            tagList.add("Alcohol-Free");
-//
-//            for (String tag : tagList) {
-//                tagFlexboxLayout.addView(getTag(DetailActivity.this, tag));
-//            }
             labelView.setText("Erreur, pas de recette trouvée");
         }
 
@@ -115,22 +92,28 @@ public class DetailActivity extends AppActivity {
             public void onClick(View v) {
                 Recipe item = (Recipe)getIntent().getExtras().get("object");
                 Gson gson = new Gson();
+                String json;
+                String jsonGet;
+                String jsonSave;
                 SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
-                String jsonGet = sp.getString("recipes", "");
-
-                //si la liste de recette n'existe pas on en créé une
-                if(jsonGet == ""){
-                    savedRecipes = new ArrayList<>();
-                }
-
-                //si elle existe on la récupère et on ajoute l'item courant
-                Type type = new TypeToken<List<Recipe>>() {}.getType();
-                savedRecipes = gson.fromJson(jsonGet, type);
-                savedRecipes.add(item);
                 SharedPreferences.Editor editor = sp.edit();
 
+                //si la liste de recette n'existe pas on en créé une et on enregistre
+                if(!(sp.contains("recipes"))){
+                    savedRecipes = new ArrayList<>();
+//                    savedRecipes.add(item);
+//                    jsonSave = gson.toJson(savedRecipes);
+                } else {
+                    //si elle existe on la récupère et on ajoute l'item courant
+                    Type type = new TypeToken<List<Recipe>>() {}.getType();
+                    json = sp.getString("recipes", "");
+                    savedRecipes = gson.fromJson(json, type);
+                }
+
+                savedRecipes.add(item);
                 //on enregistre et affiche la confirmation à l'utilisateur
-                String jsonSave = gson.toJson(savedRecipes);
+                jsonSave = gson.toJson(savedRecipes);
+
                 editor.putString("recipes", jsonSave);
                 editor.apply();
                 Toast.makeText(DetailActivity.this,

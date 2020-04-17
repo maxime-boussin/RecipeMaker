@@ -30,11 +30,11 @@ Dans la premiere version l'application permettra de :
 
 ## Mockup Balsamiq
 ### Search Activity
-![SearchActivity](app/src/main/res/mipmap-hdpi/SearchActivity.png)
+![SearchActivity](files/SearchActivity.png)
 ### List Activity
-![ListActivity](app/src/main/res/mipmap-hdpi/ListActivity.png)
+![ListActivity](files/ListActivity.png)
 ### Details Activity
-![DetailsActivity](app/src/main/res/mipmap-hdpi/DetailsActivity.png)
+![DetailsActivity](files/DetailsActivity.png)
 
 ## Iteration II
 - Dans la SearchActivity :
@@ -46,5 +46,4 @@ Dans la premiere version l'application permettra de :
 - Dans la detailsActivity
   - Un icon favoris permet de sauvegarder les recettes favorites
   - refonte du design
-
 
