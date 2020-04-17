@@ -37,13 +37,26 @@ Dans la premiere version l'application permettra de :
 ![DetailsActivity](files/DetailsActivity.png)
 
 ## Iteration II
+- Ajout d'un Loader
+
+![splash](files/splash.png)
 - Dans la SearchActivity :
     - un boutton permet d'enregistrer la derniere recherche
     - refonte du design
+
+![search](files/search.png)
 - Dans la listActivity :
   - refonte du design
   - affichage des calories dans une pastille
+
+![listrecipe](files/listrecipe.png)
 - Dans la detailsActivity
   - Un icon favoris permet de sauvegarder les recettes favorites
   - refonte du design
+  - Creation d'une activity favoris
 
+![detailsRecipe](files/detailsRecipe.png)
+
+![toastaddfavorites](files/toastaddfavorites.png)
+
+![listFavoris](files/listFavoris.png)
