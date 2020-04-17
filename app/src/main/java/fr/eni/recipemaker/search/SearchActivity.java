@@ -37,6 +37,7 @@ import fr.eni.recipemaker.ui.listing.ListingActivity;
 import fr.eni.recipemaker.utils.Constant;
 import fr.eni.recipemaker.utils.FastDialog;
 
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class SearchActivity extends AppActivity {
 
     private List<Recipe> recipies = new ArrayList<>();
@@ -50,10 +51,12 @@ public class SearchActivity extends AppActivity {
     private CheckBox chkNoLactose;
     private CheckBox chkNoAlcool;
     private CheckBox chkNoPeanuts;
+    private Button buttonReccord;
     private static final String PREFS = "PREFS";
     private static final String PREFS_INGREDIENTS = "PREFS_INGREDIENTS";
     private static final String PREFS_EXCLUDED = "PREFS_EXCLUDED";
     SharedPreferences sharedPreferences;
+    StringJoiner excluded = new StringJoiner(",",Constant.STR_EXCLUDED,"");
 
 
 
@@ -68,7 +71,7 @@ public class SearchActivity extends AppActivity {
         chkNoAlcool = (CheckBox) findViewById(R.id.chkNoAlcool);
         chkNoPeanuts = (CheckBox) findViewById(R.id.chkNoPeanuts);
         sharedPreferences = getBaseContext().getSharedPreferences(PREFS, MODE_PRIVATE);
-
+        buttonReccord = (Button) findViewById(R.id.buttonReccord);
         /**
          * affiche la liste vide par defaut
          */
@@ -79,6 +82,28 @@ public class SearchActivity extends AppActivity {
         );
         listIngredients.setAdapter(adapter);
 
+        buttonReccord.setOnClickListener(new View.OnClickListener() {
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                if(ingredients.isEmpty()){
+                    FastDialog.showDialog(
+                            SearchActivity.this,
+                            FastDialog.SIMPLE_DIALOG,
+                            getString(R.string.MSG_INGREDIENTS)
+                    );
+                    return;
+                }else{
+                   String sbIng = ingredients.stream().map(Ingredient::getText).collect(Collectors.joining(",")).toString();
+
+                sharedPreferences
+                        .edit()
+                        .putString(PREFS_INGREDIENTS, sbIng.toString())
+                        .putString(PREFS_EXCLUDED,excluded.toString())
+                        .apply();
+            }}
+        });
 
         /**
          * envoi de la requette
@@ -94,7 +119,7 @@ public class SearchActivity extends AppActivity {
                     FastDialog.showDialog(
                             SearchActivity.this,
                             FastDialog.SIMPLE_DIALOG,
-                            "Veuillez saisir des ingrédients"
+                            getString(R.string.MSG_INGREDIENTS)
                     );
                     return;
                 }
@@ -112,7 +137,7 @@ public class SearchActivity extends AppActivity {
                     listeDesIngredients = ingredients.stream().map(Ingredient::getText).collect(Collectors.joining(","));
                 }
                 //String excluded = Constant.STR_EXCLUDED;
-                StringJoiner excluded = new StringJoiner(",",Constant.STR_EXCLUDED,"");
+
                 if(chkNoAlcool.isChecked()){
                     excluded.add(Constant.ALCOHOL_FREE);
                 }
