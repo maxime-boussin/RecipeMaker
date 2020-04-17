@@ -48,7 +48,7 @@ public class FavoritesActivity extends AppActivity {
 
         Type type = new TypeToken<List<Recipe>>() {}.getType();
         List<Recipe> recipeList = gson.fromJson(json, type);
-        if(recipeList.isEmpty()) {
+        if(recipeList == null || recipeList.isEmpty()) {
             noFavorite.setText("No recipes in favorites for now !");
         } else {
             for (Recipe r : recipeList) {
