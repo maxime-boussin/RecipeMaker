@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -58,8 +57,6 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
         });
 
         return convertView;
-
-
     }
 
 
@@ -68,6 +65,6 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
          * indispensable ??
          */
         TextView ingredientName;
-        ImageButton buttonSuppr;
+        Button buttonSuppr;
     }
 }
