@@ -22,8 +22,10 @@ import android.widget.Toast;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +44,9 @@ public class DetailActivity extends AppActivity {
     private LinearLayout ingredientLinearLayout;
     private FlexboxLayout tagFlexboxLayout;
     private Button buttonFavorite;
+    private List<Recipe> savedRecipes;
 
     private String urlRedirect;
-    // création liste Java
-    private List<Recipe> recipeList = new ArrayList<>();
 
     // Adapter
     private RecipeAdapter adapter;
@@ -77,7 +78,6 @@ public class DetailActivity extends AppActivity {
             Picasso.get().load(item.getImage()).into(imageView);
             labelView.setText(item.getLabel());
             urlRedirect = item.getUrl();
-            //urlView.setText(item.getUrl());
 
             for(Ingredient ingredient : item.getIngredients()) {
                 ingredientLinearLayout.addView(getIngredient(DetailActivity.this, ingredient.getText()));
@@ -118,13 +118,21 @@ public class DetailActivity extends AppActivity {
             @Override
             public void onClick(View v) {
                 Recipe item = (Recipe)getIntent().getExtras().get("object");
+                if(savedRecipes == null) {
+                    savedRecipes = new ArrayList<>();
+                }
+                savedRecipes.add(item);
+
                 SharedPreferences sp = getSharedPreferences("PREF_MODE", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putString("title", item.getLabel());
-                editor.putString("urlRecipe", item.getUrl());
+                Gson gson = new Gson();
+                String json = gson.toJson(savedRecipes);
+                editor.putString("recipes", json);
                 editor.apply();
-                Toast.makeText(DetailActivity.this, "Recipe added to favorites !",
+                Toast.makeText(DetailActivity.this,
+                        "Recipe added to favorites !",
                         Toast.LENGTH_LONG).show();
+
             }
         });
     }

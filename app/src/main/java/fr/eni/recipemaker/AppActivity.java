@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.eni.recipemaker.favorites.FavoritesActivity;
+import fr.eni.recipemaker.search.SearchActivity;
 
 public class AppActivity extends AppCompatActivity {
 
@@ -42,7 +43,7 @@ public class AppActivity extends AppCompatActivity {
 
         //pour splashscreen
         if(getSupportActionBar() != null) {
-            if(!(this instanceof MainActivity)) {
+            if(!(this instanceof MainActivity || this instanceof SearchActivity)) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
         }
